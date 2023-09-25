@@ -1,0 +1,151 @@
+html, body {
+  font-family: 'Garamond';
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+
+.spinner:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  border-top-color: #000;
+  animation: spinner .6s linear infinite;
+}
+
+.spinner {
+  width: 2em;
+  height: 2em;
+  position: relative;
+}
+
+input {
+  padding: .5em .25em;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+  min-width: 5em;
+  min-height: 2em;
+}
+
+.search-view {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  height: 5em;
+  padding: 0 1em;
+}
+
+.search-form .form-controls {
+  display: flex;
+}
+
+.search-form label {
+  font-size: 1.5em;
+  margin-right: .5em;
+}
+
+.search-form > input,button {
+  /*margin-bottom: 2em;*/
+}
+
+.games-list {
+  overflow-y: scroll;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid black;
+}
+
+.game {
+  height: 5em;
+  border: 1px solid black;
+}
+
+.game form {
+  display: flex;
+  align-items: center;
+}
+
+.game .game-details {
+  margin-left: 1em;
+}
+
+.game img {
+  /* @TODO this doesnt respect aspect ratio*/
+  width: 5em;
+  height: 5em;
+}
+
+.game:nth-child(odd) {
+  background-color: lightgray;
+}
+
+.game:nth-child(even) {
+  background-color: white;
+}
+
+.games-list .controls {
+  margin-left: 1em;
+}
+
+.flash {
+  height: 3em;
+  background-color: lightyellow;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-view {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-form {
+  display: flex;
+  align-items: center;
+  height: 5em;
+  padding: 0 1em;
+}
+
+.cart-form a {
+  margin-right: 2em;
+}
+
+.checkout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

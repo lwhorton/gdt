@@ -1,36 +1,48 @@
-# Gravie Software Engineer Challenge
+# some thoughts on the matter
 
-## Instructions
+objective: build a small web app that queries the giantbomb API to offer users
+the ability to
+1. search for video games
+2. add those video games to a cart
+3. checkout with those games in the cart
 
-After completing the challenge below, please send us an email with the location of your repository. If
-your repository is private, be sure to add us as collaborators so we can view your code.
+## objectives
+- keep the whole thing as dependency-free as possible
+- "use the platform" - html, css, and barely any js
+- provide useful hypermedia responses wherever possible. don't write RPC.
+- don't spend much time polishing a toy- this is only a proof of some level of
+  competency
+- dont run out of free rate-limited API requests
 
-### Time Box
+## notes
+- we're using core.memoize on a 12h ttl, which seems reasonable for essentially
+  a user-fed video game wiki
+- our single user is hardcoded "user-1", and no authn/authz or sessions were
+  considered
+- no database was configured, we're using an atom with useful domain functions
+  covering mutation
+- checkouts can be exceedingly complex on large distributed, eventually
+  consistent systems. we are making 0 attempt at solving such problems as
+  inventory mutexes in order to finish in a reasonable amount of time.
+- in a similar line of reasoning, we're omitting meaningful transactionality
+- in a similar line of reasoning, the layout is functional but not pretty
+- a judicous use of 303s keeps us safe/idempotent in the absence of a
+  transactionality system
+- due to the slowness of the provided search API, we've implemented some
+  progressive enhancement to provide more meaningful feedback to the user while
+  they wait. this comes at the cost of some complexity, and i don't really like
+  it.
 
-3-4 Hours
+# getting started
 
-## Synopsis
+## to dev
 
-For this challenge you will consume the Giant Bomb API to create an application that will allow a
-user to search games and "rent" them. The application should consist of at least two unique pages
-(`search` and `checkout`). Your view should display the game thumbnail and title, and the rest is up
-to you. You can use any language and or framework you'd like. 
+```
+GIANTBOMB_API_KEY=... make dev
 
-![Giant Bomb](https://upload.wikimedia.org/wikipedia/en/4/4b/Giant_Bomb_logo.png)
+;; repl in, and eval:
+(gdt.main/-main ...relevant args...)
 
-You can get started by signing up for an API key [here](https://www.giantbomb.com/api/).
-
-Note: You'll most likely need to use the social media technique for logging in (2022-05-16: confirmed this works with google.)  Once you're logged in, go back to the [API page](https://www.giantbomb.com/api/) to access your key.
-
-### Resources
-
-You can find the quickstart guide
-[here](https://www.giantbomb.com/forums/api-developers-3017/quick-start-guide-to-using-the-api-1427959/). 
-
-You can find a full list of API features [here](https://www.giantbomb.com/api/documentation). 
-
-### Questions
-
-Don't hesitate to reach out with any questions. Remember we are more focused on seeing your
-development process than checking off a list of requirements, so be sure you are able to speak to your
-code and your thoughts behind it.
+;;
+visit localhost:3000
+```

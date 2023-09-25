@@ -1,0 +1,15 @@
+{:paths ["src" "resources"]
+ :deps {org.clojure/clojure {:mvn/version "1.11.1"}
+        org.clojure/data.json {:mvn/version "2.4.0"}
+        org.clojure/data.xml {:mvn/version "0.2.0-alpha8"}
+        org.clojure/core.memoize {:mvn/version "1.0.257"}
+        http-kit/http-kit {:mvn/version "2.6.0"}
+        ring/ring-core {:mvn/version "1.10.0"}
+        camel-snake-kebab/camel-snake-kebab {:mvn/version "0.4.3"}
+        io.github.escherize/huff {:git/sha "66d1daf19c9c795485a48e367df9b4b013515bf4"}}
+ :aliases {:nrepl {:extra-deps {nrepl/nrepl {:mvn/version "1.1.0-alpha1"}}}
+           :portal {:extra-deps {djblue/portal {:mvn/version "0.46.0"}}}
+
+           :build {:deps {io.github.clojure/tools.build {:git/tag "v0.9.5" :git/sha "24f2894"}}
+                   :ns-default build
+                   :paths ["build"]}}}
